@@ -15,9 +15,13 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter number of array: ");
         int input = sc.nextInt();
-        System.out.println("Enter search value");
         
-        BinarySearch testing = new BinarySearch(input);
+        System.out.println("Enter search value");
+        int target = sc.nextInt();
+        
+        BinarySearch testing = new BinarySearch(input, target);
+        testing.display();
+        
     }
     
 }
