@@ -15,24 +15,27 @@ public class BinarySearch {
     private int target;
     private int length;
     private int[] array;
+    private int[] secondArray;
 
     public BinarySearch(int length, int target) {
         this.length = length;
         this.array = randomNumber(length);
         this.target = target;
+        this.secondArray = bubbleSort(this.array);
 
     }
 
     public int binarySearch(int target) {
         int low = 0;
-        int high = array.length - 1;
+        
+        int high = secondArray.length - 1;
 
         while (low <= high) {
             int mid = low + (high - low) / 2;
 
-            if (array[mid] == target) {
+            if (secondArray[mid] == target) {
                 return mid;
-            } else if (array[mid] < target) {
+            } else if (secondArray[mid] < target) {
                 low = mid + 1;
             } else {
                 high = high - 1;
@@ -47,13 +50,14 @@ public class BinarySearch {
         for (int i = 0; i < len; i++) {
             newArray[i] = random.nextInt(10);
         }
-        Arrays.sort(newArray);
+       
 
         return newArray;
     }
 
     public void display() {
-        System.out.println("Sorted array: " + Arrays.toString(array));
+        System.out.println("Unsorted array: " + Arrays.toString(array));
+        System.out.println("Sorted array: " + Arrays.toString(secondArray));
         int result = binarySearch(target);
         if (result != -1) {
             System.out.println("Found " + this.target + " at index: " + result);
@@ -62,5 +66,23 @@ public class BinarySearch {
         }
         
     }
-
+    
+    
+    public int[] bubbleSort(int[] array) {
+        int[] newArray = Arrays.copyOf(array, array.length);
+        int temp = 0;
+        for (int i = 0; i < newArray.length - 1; i++) {
+            for (int j = 0; j < newArray.length - 1; j++) {
+                if (newArray[j] < newArray[j + 1]) {
+                    temp = newArray[j];
+                    newArray[j] = newArray[j + 1];
+                    newArray[j + 1] = temp;
+                }
+            }
+        }
+        return newArray;
+        
+        
+        
+    }
 }
