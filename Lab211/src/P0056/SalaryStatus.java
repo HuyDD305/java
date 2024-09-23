@@ -4,17 +4,49 @@
  */
 package P0056;
 
+import java.util.Scanner;
+
 /**
  *
  * @author MSI
  */
 public class SalaryStatus extends Worker{
-    private String status;
-
-    public SalaryStatus(String status, String name, int id, int age, double salary, String workLocation) {
-        super(name, id, age, salary, workLocation);
-        this.status = status;
+    private boolean status;
+    private Worker worker;
+    private double money;
+    Scanner sc = new Scanner(System.in);
+    
+    public SalaryStatus(Worker worker) {
+        System.out.println("What is the status of this worker? True or False?");
+        this.status = sc.nextBoolean();
+        this.worker = worker;
     }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
+    }
+
+    public double getMoney() {
+        return money;
+    }
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
     
     
     

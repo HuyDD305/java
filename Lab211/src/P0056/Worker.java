@@ -11,12 +11,16 @@ package P0056;
 public class Worker {
     
     private String name;
-    private int id;
+    private String id;
     private int age;
     private double salary;
     private String workLocation;
     
-    public Worker(String name, int id, int age, double salary, String workLocation) {
+    public Worker() {
+        
+    }
+    
+    public Worker(String name, String id, int age, double salary, String workLocation) {
         this.name = name;
         this.id = id;
         this.age = age;
@@ -30,7 +34,7 @@ public class Worker {
         return name;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

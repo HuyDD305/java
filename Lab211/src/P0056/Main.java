@@ -28,9 +28,16 @@ public class Main {
                         Worker newWorker = manager.gettingInput();
                         manager.addWorker(newWorker);
                     }
-//                    case 2 -> manager.changeSalary();
-//                    case 3 -> manager.changeSalary();
-//                    case 4 -> manager.printAll();
+                    case 2 -> {
+                        SalaryStatus status = manager.salarayChange();
+                        manager.changeSalary(status, status.getId(), status.getSalary());
+                        
+                    }
+                    case 3 -> {
+                        SalaryStatus status = manager.salarayChange();
+                        manager.changeSalary(status, status.getId(), status.getSalary());
+                    }
+                    case 4 -> manager.getInformationSalary();
                     case 5 -> {
                         check = false;
                     }
