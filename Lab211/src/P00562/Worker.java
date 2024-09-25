@@ -13,20 +13,28 @@ import java.time.format.DateTimeFormatter;
  * @author MSI
  */
 public class Worker {
-    
+
     private String name;
     private String id;
     private int age;
     private double salary;
     private String workLocation;
     private boolean salaryAdjusted;
-    LocalDateTime addedDate;
-    
-    
-    public Worker() {
-        
+    private String status;
+
+    public String getStatus() {
+        return status;
     }
-    
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    LocalDateTime addedDate;
+
+    public Worker() {
+
+    }
+
     public Worker(String name, String id, int age, double salary, String workLocation) {
         this.name = name;
         this.id = id;
@@ -34,9 +42,8 @@ public class Worker {
         this.salary = salary;
         this.workLocation = workLocation;
         this.salaryAdjusted = false;
-        
+
     }
-    
 
     public String getName() {
         return name;
@@ -83,23 +90,10 @@ public class Worker {
     public boolean isSalaryAdjusted() {
         return salaryAdjusted;
     }
-    
+
     public String getAddedDateFormatted() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return addedDate.format(formatter); // Format the date and time
     }
 
-    @Override
-    public String toString() {
-        return "Worker{" + "name=" + name + ", id=" + id + ", age=" + age + ", salary=" + salary + ", workLocation=" + workLocation + ", salaryAdjusted=" + salaryAdjusted + ", addedDate=" + addedDate + '}';
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

@@ -35,25 +35,34 @@ public class Main {
                         }
                     }
                     case 2 -> {
-                        manager.changeSalary(true);
+                        if (manager.changeSalary(true)) {
+                            System.out.println("Successful increased");
+                        } else {
+                            System.out.println("Fail to update salary");
+                        }
                     }
                     case 3 -> {
-                        manager.changeSalary(false);
-                        
-                        
+
+                        if (manager.changeSalary(false)) {
+                            System.out.println("Successful increased");
+                        } else {
+                            System.out.println("Fail to update salary");
+                        }
+
                     }
                     case 4 -> {
-                        System.out.print(manager.getList());
+                        manager.printAll();
                     }
                     case 5 -> {
                         check = false;
                     }
-                    default -> System.out.println("Invalid option. Please choose a valid option.");
+                    default ->
+                        System.out.println("Invalid option. Please choose a valid option.");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a valid number");
             }
-        } while(check);
+        } while (check);
     }
 
 }
