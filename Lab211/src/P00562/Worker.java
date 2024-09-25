@@ -2,7 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package P0056;
+package P00562;
+
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -16,6 +20,8 @@ public class Worker {
     private double salary;
     private String workLocation;
     private boolean salaryAdjusted;
+    LocalDateTime addedDate;
+    
     
     public Worker() {
         
@@ -67,6 +73,7 @@ public class Worker {
     public void setSalary(double salary) {
         this.salary = salary;
         this.salaryAdjusted = true;
+        this.addedDate = LocalDateTime.now();
     }
 
     public void setWorkLocation(String workLocation) {
@@ -76,6 +83,18 @@ public class Worker {
     public boolean isSalaryAdjusted() {
         return salaryAdjusted;
     }
+    
+    public String getAddedDateFormatted() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        return addedDate.format(formatter); // Format the date and time
+    }
+
+    @Override
+    public String toString() {
+        return "Worker{" + "name=" + name + ", id=" + id + ", age=" + age + ", salary=" + salary + ", workLocation=" + workLocation + ", salaryAdjusted=" + salaryAdjusted + ", addedDate=" + addedDate + '}';
+    }
+    
+    
     
     
     
