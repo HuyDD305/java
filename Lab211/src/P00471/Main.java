@@ -9,5 +9,7 @@ package P00471;
  * @author ADMIN
  */
 public class Main {
-    
+    public static void main(String[] args) {
+        Display display
+    }
 }

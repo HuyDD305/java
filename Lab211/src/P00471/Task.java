@@ -19,10 +19,10 @@ public class Task {
     private double planFrom;
     private double planTo;
     private String assignee;
-    private String reviewer;
+    private String expert;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-    public Task(int id, TaskType taskType, String requirementName, Date date, double planFrom, double planTo, String assignee, String reviewer) {
+    public Task(int id, TaskType taskType, String requirementName, Date date, double planFrom, double planTo, String assignee, String expert) {
         this.id = id;
         this.taskType = taskType;
         this.requirementName = requirementName;
@@ -30,7 +30,7 @@ public class Task {
         this.planFrom = planFrom;
         this.planTo = planTo;
         this.assignee = assignee;
-        this.reviewer = reviewer;
+        this.expert = expert;
     }
 
     public int getId() {
@@ -62,11 +62,11 @@ public class Task {
     }
 
     public String getReviewer() {
-        return reviewer;
+        return expert;
     }
 
     @Override
     public String toString() {
-        return id + " - " + taskType.getName() + " - " + requirementName + " - " + getDate() + " - " + planFrom + " to " + planTo + " - " + assignee + " - " + reviewer;
+        return id + " - " + taskType.getName() + " - " + requirementName + " - " + getDate() + " - " + planFrom + " to " + planTo + " - " + assignee + " - " + expert;
     }
 }
