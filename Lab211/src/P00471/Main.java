@@ -29,8 +29,10 @@ public class Main {
                         break;
                     case 3:
                         display.printAll();
+                        break;
                     case 4:
                         check = false;
+                        break;
                 }
             } catch (Exception e) {
                 System.out.println(e);
