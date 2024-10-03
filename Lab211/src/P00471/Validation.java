@@ -19,15 +19,17 @@ public class Validation {
                 String input = sc.nextLine().trim();
                 if (input.matches(regex)) {
                     return input;
+                } else {
+                    throw new Exception();
                 }
 
             } catch (Exception e) {
-                System.out.println("Invalid int input");
+                System.out.print("Invalid int input, please try again: ");
             }
         }
 
     }
-    
+
     public static String inputDoubleValid(String regex) {
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -35,15 +37,17 @@ public class Validation {
                 String input = sc.nextLine().trim();
                 if (input.matches(regex)) {
                     return input;
+                } else {
+                    throw new Exception();
                 }
 
             } catch (Exception e) {
-                System.out.println("Invalid double input");
+                System.out.print("Invalid double input, please try again: ");
             }
         }
 
     }
-    
+
     public static String inputString(String regex) {
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -51,15 +55,17 @@ public class Validation {
                 String input = sc.nextLine().trim();
                 if (input.matches(regex)) {
                     return input;
+                } else {
+                    throw new Exception();
                 }
 
             } catch (Exception e) {
-                System.out.println("Invalid string input");
+                System.out.print("Invalid string input, please try again: ");
             }
         }
 
     }
-    
+
     public static String inputDateValid(String regex) {
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -67,15 +73,17 @@ public class Validation {
                 String input = sc.nextLine().trim();
                 if (input.matches(regex)) {
                     return input;
+                } else {
+                    throw new Exception();
                 }
 
             } catch (Exception e) {
-                System.out.println("Invalid Date input");
+                System.out.print("Invalid Date input, please try again: ");
             }
         }
 
     }
-    
+
     public static String inputTypeValid(String regex) {
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -83,14 +91,32 @@ public class Validation {
                 String input = sc.nextLine().trim();
                 if (input.matches(regex)) {
                     return input;
+                } else {
+                    throw new Exception();
                 }
 
             } catch (Exception e) {
-                System.out.println("Must be between 1 - 4");
+                System.out.print("Must be a number, please try again: ");
             }
         }
 
     }
-    
-    
+
+    public static int checkInputRange(int min, int max) {
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            try {
+                int input = Integer.parseInt(sc.nextLine());
+                if (input > min && input < max) {
+                    return input;
+                } else {
+                    throw new NumberFormatException();
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input, please enter from 1 to 4");
+            }
+        }
+    }
+
 }

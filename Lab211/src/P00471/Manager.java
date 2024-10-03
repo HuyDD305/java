@@ -4,6 +4,7 @@
  */
 package P00471;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,21 +32,30 @@ public class Manager {
     public int addTask(String requirementName, String TaskTypeID, String date, String planForm, String planTo, String assignee, String reviewer) throws Exception {
         int id = taskList.size() + 1;
         int typeID = Integer.parseInt(TaskTypeID);
+
         TaskType type = findTypeById(typeID);
 
         double from = Double.parseDouble(planForm);
         double to = Double.parseDouble(planTo);
 
         if (type == null) {
-            throw new Exception("Type is Null");
+            throw new Exception("TaskType not found for ID: " + typeID);
+
+        }
+        System.out.println(type.getName());
+        dateFormat.setLenient(false);
+
+        Date dateTesting;
+        try {
+            dateTesting = dateFormat.parse(date);
+        } catch (ParseException e) {
+            throw new Exception("Invalid date. Please ensure the date is correct and follows dd-MM-yyyy.");
         }
 
-        Date dateTesting = dateFormat.parse(date);
-
-        if (planForm >= planTo || planForm < 8 || planForm > 17.5 || planTo > 17.5 || planTo < 8) {
+        if (from >= to || from < 8 || from > 17.5 || to > 17.5 || to < 8) {
             throw new Exception("Invalid input for planTo and planForm");
         }
-        Task task = new Task(id, type, requirementName, dateTesting, planForm, planTo, assignee, reviewer);
+        Task task = new Task(id, type, requirementName, dateTesting, from, to, assignee, reviewer);
         if (this.taskList.add(task)) {
             return 1;
         } else {
@@ -57,14 +67,14 @@ public class Manager {
     public void deleteTask(int id) throws Exception {
         Task task = findTaskById(id);
         if (task == null) {
-            throw new Exception("Can't find task");
+            throw new Exception("Can't find task with ID: " + id);
         } else {
             taskList.remove(task);
 
         }
     }
 
-    public List<Task> printAll() {
+    public List<Task> gettingTheList() {
         return this.taskList;
     }
 

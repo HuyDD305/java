@@ -37,8 +37,8 @@ public class Task {
         return id;
     }
 
-    public TaskType getTaskType() {
-        return taskType;
+    public String getTaskType() {
+        return taskType.getName();
     }
 
     public String getRequirementName() {

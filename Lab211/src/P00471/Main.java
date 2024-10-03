@@ -4,12 +4,38 @@
  */
 package P00471;
 
+import P00471.Display;
+
 /**
  *
  * @author ADMIN
  */
 public class Main {
-    public static void main(String[] args) {
-        Display display
+
+    public static void main(String[] args) throws Exception {
+        boolean check = true;
+        Display display = new Display();
+
+        do {
+            display.menuDisplay();
+            try {
+                int input = Validation.checkInputRange(0, 5);
+                switch (input) {
+                    case 1:
+                        display.gettingAddInput();
+                        break;
+                    case 2: 
+                        display.gettingDelInput();
+                        break;
+                    case 3:
+                        display.printAll();
+                    case 4:
+                        check = false;
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+
+        } while (check);
     }
 }
