@@ -4,9 +4,11 @@
  */
 package P00562;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  *
@@ -17,25 +19,17 @@ public class Worker {
     private String name;
     private String id;
     private int age;
-    private double salary;
+    private int salary;
     private String workLocation;
     private boolean salaryAdjusted;
     private String status;
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-    LocalDateTime addedDate;
 
     public Worker() {
 
     }
 
-    public Worker(String name, String id, int age, double salary, String workLocation) {
+    public Worker(String id, String name, int age, int salary, String workLocation) {
         this.name = name;
         this.id = id;
         this.age = age;
@@ -57,7 +51,7 @@ public class Worker {
         return age;
     }
 
-    public double getSalary() {
+    public int  getSalary() {
         return salary;
     }
 
@@ -77,10 +71,8 @@ public class Worker {
         this.age = age;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(int salary) {
         this.salary = salary;
-        this.salaryAdjusted = true;
-        this.addedDate = LocalDateTime.now();
     }
 
     public void setWorkLocation(String workLocation) {
@@ -91,9 +83,9 @@ public class Worker {
         return salaryAdjusted;
     }
 
-    public String getAddedDateFormatted() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return addedDate.format(formatter); // Format the date and time
-    }
+//    public String getAddedDateFormatted() {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//        return addedDate.format(formatter); // Format the date and time
+//    }
 
 }

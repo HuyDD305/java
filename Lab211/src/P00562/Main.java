@@ -13,54 +13,34 @@ import java.util.Scanner;
  * @author MSI
  */
 public class Main {
-
     public static void main(String[] args) throws Exception {
-        Manage manager = new Manage();
-        Scanner sc = new Scanner(System.in);
-        int input;
+        Display display = new Display();
         boolean check = true;
-
+        
         do {
-            manager.display();
+            display.meduDisplay();
             try {
-                System.out.print("Please provide your input: ");
-                input = Integer.parseInt(sc.nextLine());
-                switch (input) {
-                    case 1 -> {
-                        Worker newWorker = manager.gettingInput();
-                        if (manager.addWorker(newWorker)) {
-                            System.out.println("Worker added successfully.");
-                        } else {
-                            System.out.println("Worker already exists");
-                        }
-                    }
-                    case 2 -> {
-                        if (manager.changeSalary(true)) {
-                            System.out.println("Successful increased");
-                        } else {
-                            System.out.println("Fail to update salary");
-                        }
-                    }
-                    case 3 -> {
-
-                        if (manager.changeSalary(false)) {
-                            System.out.println("Successful increased");
-                        } else {
-                            System.out.println("Fail to update salary");
-                        }
-
-                    }
-                    case 4 -> {
-                        manager.printAll();
-                    }
-                    case 5 -> {
+                int num = Validation.inputRangeValid(1, 5, Const.TYPE);
+                switch (num) {
+                    case 1:
+                        display.gettingWorkerInfo();
+                        break;
+                    case 2:
+                        display.gettingAdjustedInput(true);
+                        break;
+                    case 3:
+                        display.gettingAdjustedInput(false);
+                        break;
+                    case 4:
+                        display.displayOutput();
+                        break;
+                    case 5:
+                        System.out.println("System existing...");
                         check = false;
-                    }
-                    default ->
-                        System.out.println("Invalid option. Please choose a valid option.");
+                        break;
                 }
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a valid number");
+            } catch (Exception e) {
+                System.out.println(e);
             }
         } while (check);
     }
