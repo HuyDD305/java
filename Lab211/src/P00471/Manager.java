@@ -31,6 +31,7 @@ public class Manager {
 
     public int addTask(String requirementName, String TaskTypeID, String date, String planForm, String planTo, String assignee, String reviewer) throws Exception {
         int id = taskList.size() + 1;
+        
         int typeID = Integer.parseInt(TaskTypeID);
 
         TaskType type = findTypeById(typeID);
@@ -56,6 +57,9 @@ public class Manager {
             throw new Exception("Invalid input for planTo and planForm");
         }
         Task task = new Task(id, type, requirementName, dateTesting, from, to, assignee, reviewer);
+        if (findTaskById(task.getId()) != null) {
+            task.setId(task.getId() + 1);
+        }
         if (this.taskList.add(task)) {
             return 1;
         } else {

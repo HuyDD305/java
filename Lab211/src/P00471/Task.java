@@ -65,6 +65,12 @@ public class Task {
         return expert;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
+
     @Override
     public String toString() {
         return id + " - " + taskType.getName() + " - " + requirementName + " - " + getDate() + " - " + planFrom + " to " + planTo + " - " + assignee + " - " + expert;
