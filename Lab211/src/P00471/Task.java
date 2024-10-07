@@ -21,9 +21,10 @@ public class Task {
     private String assignee;
     private String expert;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    private static int nextID = 1;
 
-    public Task(int id, TaskType taskType, String requirementName, Date date, double planFrom, double planTo, String assignee, String expert) {
-        this.id = id;
+    public Task(TaskType taskType, String requirementName, Date date, double planFrom, double planTo, String assignee, String expert) {
+        setId();
         this.taskType = taskType;
         this.requirementName = requirementName;
         this.date = date;
@@ -65,8 +66,9 @@ public class Task {
         return expert;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId() {
+        this.id = nextID;
+        nextID++;
     }
     
     

@@ -30,7 +30,7 @@ public class Manager {
     }
 
     public int addTask(String requirementName, String TaskTypeID, String date, String planForm, String planTo, String assignee, String reviewer) throws Exception {
-        int id = taskList.size() + 1;
+        
         
         int typeID = Integer.parseInt(TaskTypeID);
 
@@ -56,10 +56,8 @@ public class Manager {
         if (from >= to || from < 8 || from > 17.5 || to > 17.5 || to < 8) {
             throw new Exception("Invalid input for planTo and planForm");
         }
-        Task task = new Task(id, type, requirementName, dateTesting, from, to, assignee, reviewer);
-        if (findTaskById(task.getId()) != null) {
-            task.setId(task.getId() + 1);
-        }
+        Task task = new Task(type, requirementName, dateTesting, from, to, assignee, reviewer);
+        
         if (this.taskList.add(task)) {
             return 1;
         } else {

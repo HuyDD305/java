@@ -59,7 +59,7 @@ public class Manage {
         
     }
     public int gettingIntID(SalaryHistory worker) {
-        return Character.getNumericValue(worker.getWorker().getId().charAt(1));
+        return Integer.parseInt(worker.getWorker().getId().substring(1));
     }
 
     
