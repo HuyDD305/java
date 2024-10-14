@@ -4,7 +4,11 @@
  */
 package employeeproject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,6 +18,7 @@ import java.util.List;
 public class Manage {
 
     private List<Employee> list;
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
     public Manage() {
         this.list = new ArrayList<>();
@@ -23,6 +28,7 @@ public class Manage {
         if (isDuplicated(id) || id == null) {
             throw new Exception("Code(id) cannot be null or duplicated with existed Code in DB");
         }
+  
 
         Employee employee = new Employee(id, FirstName, LastName, phone, email, location, date, sex, salary, agency);
         list.add(employee);
@@ -63,17 +69,17 @@ public class Manage {
     }
 
     public List<Employee> sortBySalary() {
-        List<Employee> newList = new ArrayList(this.list);
-        for (int i = 0; i < newList.size() - 1; i++) {
-            for (int j = 0; j < newList.size() - 1; j++) {
-                if (newList.get(j).getSalary() > newList.get(j + 1).getSalary()) {
-                    Employee temp = newList.get(j);
-                    newList.set(j, newList.get(j + 1));
-                    newList.set(j + 1, temp);
+        
+        for (int i = 0; i < this.list.size() - 1; i++) {
+            for (int j = 0; j < this.list.size() - 1; j++) {
+                if (this.list.get(j).getSalary() > this.list.get(j + 1).getSalary()) {
+                    Employee temp = this.list.get(j);
+                    this.list.set(j, this.list.get(j + 1));
+                    this.list.set(j + 1, temp);
                 }
             }
         }
-        return newList;
+        return this.list;
 
     }
     

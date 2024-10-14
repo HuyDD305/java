@@ -10,5 +10,5 @@ package P0064;
  */
 public class Const {
     public static final String EMAIL = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
-    public static final String PHONE = "^\\d{10}$";
+    public static final String PHONE = "^\\d{9}$";
 }

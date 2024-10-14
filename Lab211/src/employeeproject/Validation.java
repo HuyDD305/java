@@ -5,6 +5,9 @@
 package employeeproject;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 /**
@@ -12,64 +15,54 @@ import java.util.Scanner;
  * @author ADMIN
  */
 public class Validation {
+    private static final Scanner sc = new Scanner(System.in);
 
     public static String inputPhoneNumValid(String regex) throws Exception {
-        Scanner sc = new Scanner(System.in);
-
         while (true) {
             try {
-                String input = sc.nextLine();
+                String input = sc.nextLine().trim();
                 if (!input.matches(regex)) {
-                    System.out.print("Phone number must be number: ");
+                    System.out.print("Invalid phone number format. Please enter a 10-digit number: ");
                     continue;
                 }
-                int num = Integer.parseInt(input);
-                if (num < 10) {
-                    throw new Exception();
-                } else {
-                    return input;
-                }
-
+                return input;
             } catch (Exception e) {
-                System.out.print("Invalid phone number, must be 9 digits");
+                System.out.print("Invalid phone number, must be 10 digits: ");
             }
-
         }
-
     }
 
-    public static String inputEmailValid(String regex) throws Exception {
-        Scanner sc = new Scanner(System.in);
 
+
+    public static String inputEmailValid(String regex) throws Exception {
         while (true) {
             try {
-                String input = sc.nextLine();
+                String input = sc.nextLine().trim();
                 if (!input.matches(regex)) {
-                    throw new Exception();
-
-                } else {
-                    return input;
+                    System.out.print("Wrong email format. Please enter a valid email: ");
+                    continue;
                 }
-
+                return input;
             } catch (Exception e) {
-                System.out.print("Wrong email format: ");
+                System.out.print("Invalid email, please try again: ");
             }
-
         }
-
     }
 
     public static String inputDateValid(String regex) {
         Scanner sc = new Scanner(System.in);
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         while (true) {
+
+            String input = sc.nextLine().trim();
+            if (!input.matches(regex)) {
+                System.out.println("Invalid format. Please enter in DD-MM-YYYY format.");
+            }
             try {
-                String input = sc.nextLine();
-                if (input.matches(regex)) {
-                    return input;
-                } else {
-                    throw new Exception();
-                }
-            } catch (Exception e) {
+                LocalDate date = LocalDate.parse(input, dateFormat);
+                return input;
+
+            } catch (DateTimeParseException e) {
                 System.out.print("Invalid Date input, please try again: ");
             }
         }
@@ -77,36 +70,57 @@ public class Validation {
     }
 
     public static int inputIntValid(String regex) {
-        Scanner sc = new Scanner(System.in);
-        while (true) {
-            try {
-                String input = sc.nextLine();
-                if (input.matches(regex)) {
-                    return Integer.parseInt(input);
-                } else {
-                    throw new NumberFormatException();
-                }
-            } catch (NumberFormatException e) {
-                System.out.print("Invalid input, must be a numebr please try again: ");
-            }
-        }
-
-    }
-
-    public static String inputStringValid(String regex) {
-        Scanner sc = new Scanner(System.in);
         while (true) {
             try {
                 String input = sc.nextLine().trim();
-                if (input.matches(regex)) {
-                    return input;
-                } else {
-                    throw new Exception();
+                if (!input.matches(regex)) {
+                    System.out.print("Invalid input, must be a number. Please try again: ");
+                    continue;
                 }
-            } catch (Exception e) {
-                System.out.print("Invalid input, please try again: ");
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.print("Invalid input, must be a number. Please try again: ");
             }
         }
+    }
 
+
+    public static String inputStringValid(String regex) {
+        while (true) {
+            try {
+                String input = sc.nextLine().trim();
+                if (input.isEmpty()) {
+                    throw new Exception("Input cannot be empty.");
+                }
+                if (!input.matches(regex)) {
+                    System.out.print("Invalid input format. Please try again: ");
+                    continue;
+                }
+                return input;
+            } catch (Exception e) {
+                System.out.print("Invalid input. " + e.getMessage() + " Please try again: ");
+            }
+        }
+    }
+
+    public static int inputRangeValid(int min, int max, String regex) {
+        System.out.print("Please provide your input: ");
+        while (true) {
+            try {
+                String input = sc.nextLine().trim();
+                if (!input.matches(regex)) {
+                    System.out.print("Invalid format, please try again: ");
+                    continue;
+                }
+                int num = Integer.parseInt(input);
+                if (num < min || num > max) {
+                    System.out.print("Input out of range (" + min + "-" + max + "). Try again: ");
+                    continue;
+                }
+                return num;
+            } catch (NumberFormatException e) {
+                System.out.print("Invalid input, try again: ");
+            }
+        }
     }
 }

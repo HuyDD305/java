@@ -20,7 +20,7 @@ public class EmployeeProject {
         do {
             display.meduDisplay();
             try {
-                int num = Validation.inputRangeValid(1, 5, Const.TYPE);
+                int num = Validation.inputRangeValid(1, 6, Const.TYPE);
                 switch (num) {
                     case 1:
                         display.gettingEmployeeInfo();
@@ -32,9 +32,12 @@ public class EmployeeProject {
                         display.gettingDelInput();
                         break;
                     case 4:
-                        display.displayOutputToFile("testing.txt");
+                        display.searchEmployee();
                         break;
                     case 5:
+                        display.sortOutput();
+                        break;
+                    case 6:
                         System.out.println("System existing...");
                         check = false;
                         break;
