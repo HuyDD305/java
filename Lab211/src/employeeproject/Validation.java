@@ -25,7 +25,11 @@ public class Validation {
                     System.out.print("Invalid phone number format. Please enter a 10-digit number: ");
                     continue;
                 }
-                return input;
+                if (input.length() != 10) {
+                    throw new Exception();
+                } else {
+                    return input;
+                }
             } catch (Exception e) {
                 System.out.print("Invalid phone number, must be 10 digits: ");
             }
