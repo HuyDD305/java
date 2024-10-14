@@ -13,6 +13,7 @@ import P00471.Display;
 public class Main {
 
     public static void main(String[] args) throws Exception {
+
         boolean check = true;
         Display display = new Display();
 
@@ -40,4 +41,5 @@ public class Main {
 
         } while (check);
     }
+    
 }

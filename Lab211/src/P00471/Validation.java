@@ -35,14 +35,19 @@ public class Validation {
         while (true) {
             try {
                 String input = sc.nextLine().trim();
-                if (input.matches(regex)) {
+                if (!input.matches(regex)) {
+                    System.out.print("Invalid format, please try again: ");
+                    continue;
+                }
+                double check = Double.parseDouble(input);
+                if (check >= 8.0 && check <= 17.5) {
                     return input;
                 } else {
                     throw new Exception();
                 }
 
             } catch (Exception e) {
-                System.out.print("Invalid double input, please try again: ");
+                System.out.print("Invalid hour input, must be within range (8-17.5): ");
             }
         }
 

@@ -4,6 +4,12 @@
  */
 package P00562;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 /**
  *
  * @author MSI
@@ -69,7 +75,7 @@ public class Display {
                 
                 for (SalaryHistory worker : manage.getAllList()) {
                     
-                    System.out.printf("%-7s %-10s %-10s %-10s %-10s %-10s%n", worker.getWorker().getId(), worker.getWorker().getName(), worker.getWorker().getAge(), worker.getWorker().getSalary(), worker.getStatus(), worker.getDate());
+                    System.out.printf("%-7s %-10s %-10s %-10s %-10s %-10s%n", worker.getWorker().getId(), worker.getWorker().getName(), worker.getWorker().getAge(), worker.getMoney(), worker.getStatus(), worker.getDate());
                 }
             }
         } catch (Exception e) {
@@ -77,5 +83,26 @@ public class Display {
         }
 
     }
-
+    
+    public void displayOutputToFile(String filename) throws Exception  {
+        try (PrintWriter writer = new PrintWriter(filename)) {
+            if (manage.getAllList().isEmpty()) {
+                throw new Exception("The list is empty, nothing to write");
+            } else {
+                writer.println("--------------------Display Information Salary--------------------");
+                writer.printf("%-7s %-10s %-10s %-10s %-10s %-10s%n", "Code", "Name", "Age", "Salary", "Status", "Date");
+                for (SalaryHistory worker : manage.getAllList()) {
+                    
+                    writer.printf("%-7s %-10s %-10s %-10s %-10s %-10s%n", worker.getWorker().getId(), worker.getWorker().getName(), worker.getWorker().getAge(), worker.getMoney(), worker.getStatus(), worker.getDate());
+                }
+            }
+            
+        } catch(IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage()); 
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    
 }

@@ -53,8 +53,12 @@ public class Manager {
             throw new Exception("Invalid date. Please ensure the date is correct and follows dd-MM-yyyy.");
         }
 
-        if (from >= to || from < 8 || from > 17.5 || to > 17.5 || to < 8) {
-            throw new Exception("Invalid input for planTo and planForm");
+        if (from >= to) {
+            throw new Exception("planForm must be smaller than planTo");
+        }
+        
+        if (assignee.equals(reviewer)) {
+            throw new Exception("Reviewer and assignee can't be a same person at the same time");
         }
         Task task = new Task(type, requirementName, dateTesting, from, to, assignee, reviewer);
         
@@ -98,5 +102,7 @@ public class Manager {
         }
         return null;
     }
+    
+    
 
 }

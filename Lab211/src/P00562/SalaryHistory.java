@@ -17,16 +17,18 @@ public class SalaryHistory {
     private Worker worker;
     private LocalDate date;
     private String status;
+    private int money;
     private static final DateTimeFormatter  dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     
     public SalaryHistory() {
         
     }
     
-    public SalaryHistory(Worker worker, LocalDate date, String status) {
+    public SalaryHistory(Worker worker, LocalDate date, String status, int money) {
         this.worker = worker;
         this.date = date;
         this.status = status;
+        this.money = money;
     }
 
     public Worker getWorker() {
@@ -51,6 +53,10 @@ public class SalaryHistory {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int getMoney() {
+        return money;
     }
     
     

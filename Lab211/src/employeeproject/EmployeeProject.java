@@ -1,18 +1,18 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package P00562;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+package employeeproject;
 
 /**
  *
- * @author MSI
+ * @author ADMIN
  */
-public class Main {
+public class EmployeeProject {
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) throws Exception {
         Display display = new Display();
         boolean check = true;
@@ -23,13 +23,13 @@ public class Main {
                 int num = Validation.inputRangeValid(1, 5, Const.TYPE);
                 switch (num) {
                     case 1:
-                        display.gettingWorkerInfo();
+                        display.gettingEmployeeInfo();
                         break;
                     case 2:
-                        display.gettingAdjustedInput(true);
+                        display.updateEmployeeInfo();
                         break;
                     case 3:
-                        display.gettingAdjustedInput(false);
+                        display.gettingDelInput();
                         break;
                     case 4:
                         display.displayOutputToFile("testing.txt");
@@ -44,5 +44,5 @@ public class Main {
             }
         } while (check);
     }
-
+    
 }

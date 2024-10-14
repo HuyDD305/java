@@ -1,0 +1,7 @@
+--------------------Display Information Salary--------------------
+Code    Name       Age        Salary     Status     Date      
+w1      huy        20         3000       UP         14/10/2024
+w1      huy        20         2000       DOWN       14/10/2024
+w1      huy        20         5000       UP         14/10/2024
+w1      huy        20         4000       UP         14/10/2024
+w1      huy        20         4000       UP         14/10/2024
