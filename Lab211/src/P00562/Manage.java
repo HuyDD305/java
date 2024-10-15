@@ -4,7 +4,12 @@
  */
 package P00562;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -17,10 +22,15 @@ public class Manage {
 
     private List<Worker> list;
     private List<SalaryHistory> salaryHistory;
+    private static final String WORKERS_FILE = "workers.txt";
+    private static final String SALARY_HISTORY_FILE = "salary_history.txt";
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public Manage() {
         this.list = new ArrayList<>();
         this.salaryHistory = new ArrayList<>();
+        loadWorkersFromFile();
+        loadSalaryHistoryFromFile();
     }
 
     public void addWorker(String id, String name, int age, int salary, String workLocation) throws Exception {
@@ -30,7 +40,50 @@ public class Manage {
 
         Worker worker = new Worker(id, name, age, salary, workLocation);
         list.add(worker);
+        saveWorkersToFile();
 
+    }
+    
+    private void loadWorkersFromFile() {
+        try (BufferedReader br = new BufferedReader(new FileReader(WORKERS_FILE))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split("\\s+");
+                if (parts.length == 5) {
+                    String id = parts[0];
+                    String name = parts[1];
+                    int age = Integer.parseInt(parts[2]);
+                    int salary = Integer.parseInt(parts[3]);
+                    String workLocation = parts[4];
+                    Worker worker = new Worker(id, name, age, salary, workLocation);
+                    list.add(worker);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading workers file: " + e.getMessage());
+        }
+    }
+    
+    private void loadSalaryHistoryFromFile() {
+        try (BufferedReader br = new BufferedReader(new FileReader(SALARY_HISTORY_FILE))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split("\\s+");
+                if (parts.length == 4) {
+                    String workerId = parts[0];
+                    LocalDate date = LocalDate.parse(parts[1], DATE_FORMAT);
+                    String status = parts[2];
+                    int money = Integer.parseInt(parts[3]);
+                    Worker worker = findWorkerById(workerId);
+                    if (worker != null) {
+                        SalaryHistory history = new SalaryHistory(worker, date, status, money);
+                        salaryHistory.add(history);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading salary history file: " + e.getMessage());
+        }
     }
 
     public void adjustedSalary(String code, int money, boolean status) throws Exception {
@@ -75,6 +128,7 @@ public class Manage {
             }
             workerChanged = new SalaryHistory(worker, date, "DOWN", change);
             salaryHistory.add(workerChanged);
+            
             
 
         }
@@ -129,5 +183,24 @@ public class Manage {
         }
         return null;
     }
+    
+    private void saveWorkersToFile() {
+        try (PrintWriter writer = new PrintWriter(WORKERS_FILE)) {
+            for (Worker worker : list) {
+                writer.printf("%s,%s,%d,%d,%s%n",
+                        worker.getId(),
+                        worker.getName(),
+                        worker.getAge(),
+                        worker.getSalary(),
+                        worker.getWorkLocation());
+            }
+        } catch (IOException e) {
+            System.out.println("Error writing to workers file: " + e.getMessage());
+        }
+    }
+    
+    
+    }
 
-}
+
+
